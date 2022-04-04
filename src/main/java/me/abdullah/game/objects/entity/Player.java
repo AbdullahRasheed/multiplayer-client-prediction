@@ -1,4 +1,4 @@
-package me.abdullah.game.objects;
+package me.abdullah.game.objects.entity;
 
 import me.abdullah.game.Game;
 import me.abdullah.game.handlers.GameObject;

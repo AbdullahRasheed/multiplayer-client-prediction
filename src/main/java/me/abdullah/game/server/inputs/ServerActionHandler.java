@@ -2,7 +2,7 @@ package me.abdullah.game.server.inputs;
 
 import me.abdullah.game.input.Action;
 import me.abdullah.game.input.actions.PlayerAction;
-import me.abdullah.game.objects.Player;
+import me.abdullah.game.objects.entity.Player;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -3,7 +3,7 @@ package me.abdullah.game.client;
 import me.abdullah.game.Game;
 import me.abdullah.game.handlers.GameObject;
 import me.abdullah.game.handlers.Handler;
-import me.abdullah.game.objects.Player;
+import me.abdullah.game.objects.entity.Player;
 import me.abdullah.game.server.packets.ClientConfirmedPacket;
 import me.abdullah.game.server.packets.PlayerConnectPacket;
 import me.abdullah.game.server.packets.PlayerInfoPacket;

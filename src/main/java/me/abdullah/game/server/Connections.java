@@ -1,6 +1,6 @@
 package me.abdullah.game.server;
 
-import me.abdullah.game.objects.Player;
+import me.abdullah.game.objects.entity.Player;
 
 import java.util.*;
 

@@ -8,8 +8,7 @@ import me.abdullah.game.input.ActionHandler;
 import me.abdullah.game.input.Keybinds;
 import me.abdullah.game.input.KeyboardListener;
 import me.abdullah.game.input.actions.PlayerAction;
-import me.abdullah.game.objects.Player;
-import me.abdullah.game.server.packets.ClientConfirmedPacket;
+import me.abdullah.game.objects.entity.Player;
 import me.abdullah.game.server.packets.PlayerConnectPacket;
 
 import java.awt.*;

@@ -2,7 +2,7 @@ package me.abdullah.game.input.actions;
 
 import me.abdullah.game.Game;
 import me.abdullah.game.input.Action;
-import me.abdullah.game.objects.Player;
+import me.abdullah.game.objects.entity.Player;
 
 import java.util.function.Consumer;
 

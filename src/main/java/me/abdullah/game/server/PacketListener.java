@@ -1,8 +1,7 @@
 package me.abdullah.game.server;
 
-import javafx.util.Pair;
 import me.abdullah.game.handlers.Handler;
-import me.abdullah.game.objects.Player;
+import me.abdullah.game.objects.entity.Player;
 import me.abdullah.game.server.inputs.ServerActionHandler;
 import me.abdullah.game.server.packets.ClientConfirmedPacket;
 import me.abdullah.game.server.packets.PlayerConnectPacket;
