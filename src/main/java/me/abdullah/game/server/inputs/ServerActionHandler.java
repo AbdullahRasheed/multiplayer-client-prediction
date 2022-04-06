@@ -11,19 +11,19 @@ public class ServerActionHandler {
 
     private final Set<Action> pressed;
 
-    public ServerActionHandler(){
+    public ServerActionHandler() {
         this.pressed = new HashSet<>();
     }
 
-    public void keyPressed(PlayerAction action, Player player){
-        if(pressed.contains(action)) return;
+    public void keyPressed(PlayerAction action, Player player) {
+        if (pressed.contains(action)) return;
 
         action.actFor(player);
 
         pressed.add(action);
     }
 
-    public void keyReleased(PlayerAction action, Player player){
+    public void keyReleased(PlayerAction action, Player player) {
         action.releaseFor(player);
 
         pressed.remove(action);

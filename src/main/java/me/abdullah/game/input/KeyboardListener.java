@@ -8,7 +8,7 @@ public class KeyboardListener extends KeyAdapter {
     private final Keybinds keybinds;
     private final ActionHandler actionHandler;
 
-    public KeyboardListener(Keybinds keybinds, ActionHandler actionHandler){
+    public KeyboardListener(Keybinds keybinds, ActionHandler actionHandler) {
         this.keybinds = keybinds;
         this.actionHandler = actionHandler;
     }

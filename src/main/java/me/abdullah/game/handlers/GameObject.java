@@ -6,6 +6,7 @@ public abstract class GameObject {
 
     protected int x, y;
     protected int velX, velY;
+
     public GameObject(int x, int y, int velX, int velY) {
         this.x = x;
         this.y = y;

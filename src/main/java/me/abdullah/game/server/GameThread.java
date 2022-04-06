@@ -4,26 +4,25 @@ import me.abdullah.game.handlers.Handler;
 
 public class GameThread implements Runnable {
 
+    private final Handler handler;
     private Thread thread;
     private boolean running;
 
-    private final Handler handler;
-
-    public GameThread(Handler handler){
+    public GameThread(Handler handler) {
         this.handler = handler;
     }
 
-    public synchronized void start(){
+    public synchronized void start() {
         thread = new Thread(this);
         thread.start();
         running = true;
     }
 
-    public synchronized void stop(){
-        try{
+    public synchronized void stop() {
+        try {
             thread.join();
             running = false;
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -37,11 +36,11 @@ public class GameThread implements Runnable {
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
-        while(running){
+        while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-            while (delta >= 1){
+            while (delta >= 1) {
                 tick();
                 delta--;
             }
@@ -49,7 +48,7 @@ public class GameThread implements Runnable {
         stop();
     }
 
-    private void tick(){
+    private void tick() {
         handler.tick();
         handler.clearActionQueue();
     }

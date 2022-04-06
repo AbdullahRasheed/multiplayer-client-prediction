@@ -11,26 +11,26 @@ public class ActionHandler {
 
     private final Set<Action> pressed;
 
-    public ActionHandler(){
+    public ActionHandler() {
         this.pressed = new HashSet<>();
     }
 
-    public void keyPressed(Action action){
-        if(pressed.contains(action)) return;
+    public void keyPressed(Action action) {
+        if (pressed.contains(action)) return;
 
         action.act();
 
-        if(action instanceof PlayerAction){
+        if (action instanceof PlayerAction) {
             Game.client.sendPacket(new PlayerInputPacket((PlayerAction) action, true));
         }
 
         pressed.add(action);
     }
 
-    public void keyReleased(Action action){
+    public void keyReleased(Action action) {
         action.release();
 
-        if(action instanceof PlayerAction){
+        if (action instanceof PlayerAction) {
             Game.client.sendPacket(new PlayerInputPacket((PlayerAction) action, false));
         }
 

@@ -4,15 +4,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.function.BiConsumer;
 
 public class Connection {
-
-    private boolean running;
 
     private final Socket socket;
     private final ObjectOutputStream out;
     private final ObjectInputStream in;
+    private boolean running;
 
     public Connection(Socket socket) throws IOException {
         this.socket = socket;
@@ -36,7 +34,7 @@ public class Connection {
                     close();
                 }
 
-                if(System.currentTimeMillis() - start >= 30){
+                if (System.currentTimeMillis() - start >= 30) {
                     packetConsumer.process();
                     start += 30;
                 }

@@ -9,12 +9,13 @@ public class Window extends Canvas {
 
     /**
      * Creates the window
-     * @param width Width of the window
+     *
+     * @param width  Width of the window
      * @param height Height of the window
-     * @param title Title of the window
-     * @param game Main class (Canvas)
+     * @param title  Title of the window
+     * @param game   Main class (Canvas)
      */
-    public Window(int width, int height, String title, Game game){
+    public Window(int width, int height, String title, Game game) {
         this.width = width;
         this.height = height;
         JFrame frame = new JFrame(title);
@@ -34,7 +35,7 @@ public class Window extends Canvas {
 
     }
 
-    private Dimension getDimension(){
+    private Dimension getDimension() {
         return new Dimension(width, height);
     }
 }

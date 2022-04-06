@@ -8,6 +8,7 @@ import java.awt.*;
 public class Player extends GameObject {
 
     private final String name;
+
     public Player(String name, int x, int y, int velX, int velY) {
         super(x, y, velX, velY);
         this.name = name;
@@ -16,8 +17,8 @@ public class Player extends GameObject {
     @Override
     public void render(Graphics2D g) {
         g.setColor(Color.black);
-        g.fillRect(x, y, (int)(Game.UNIT*16), (int)(Game.UNIT*16));
-        g.drawString(name, x, y - (int)(Game.UNIT*12));
+        g.fillRect(x, y, (int) (Game.UNIT * 16), (int) (Game.UNIT * 16));
+        g.drawString(name, x, y - (int) (Game.UNIT * 12));
     }
 
     @Override
@@ -26,7 +27,7 @@ public class Player extends GameObject {
         y += velY;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 }

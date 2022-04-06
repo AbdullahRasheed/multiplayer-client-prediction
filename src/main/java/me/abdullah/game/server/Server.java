@@ -5,14 +5,13 @@ import me.abdullah.game.handlers.Handler;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.function.BiConsumer;
 
 public class Server {
 
-    private boolean running;
-
     private final ServerSocket serverSocket;
     private final PacketListener packetConsumer;
+    private boolean running;
+
     public Server(int port, Handler handler) throws IOException {
         this.serverSocket = new ServerSocket(port);
         this.packetConsumer = new PacketListener(handler);
@@ -20,12 +19,12 @@ public class Server {
         this.running = false;
     }
 
-    public synchronized void begin(){
-        if(running) throw new IllegalStateException("Can't begin a server that is already running!");
+    public synchronized void begin() {
+        if (running) throw new IllegalStateException("Can't begin a server that is already running!");
 
         running = true;
         new Thread(() -> {
-            while(running){
+            while (running) {
                 try {
                     Socket socket = serverSocket.accept();
                     socket.setTcpNoDelay(true);
@@ -37,7 +36,7 @@ public class Server {
         }).start();
     }
 
-    public synchronized void close(){
+    public synchronized void close() {
         running = false;
         try {
             serverSocket.close();

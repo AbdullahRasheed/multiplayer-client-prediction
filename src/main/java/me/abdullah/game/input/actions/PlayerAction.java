@@ -16,13 +16,13 @@ public enum PlayerAction implements Action {
     private final Consumer<Player> action;
     private final Consumer<Player> release;
 
-    PlayerAction(Consumer<Player> action, Consumer<Player> release){
+    PlayerAction(Consumer<Player> action, Consumer<Player> release) {
         this.action = action;
         this.release = release;
     }
 
     @Override
-    public void act(){
+    public void act() {
         action.accept(Game.player);
     }
 
@@ -31,11 +31,11 @@ public enum PlayerAction implements Action {
         release.accept(Game.player);
     }
 
-    public void actFor(Player player){
+    public void actFor(Player player) {
         action.accept(player);
     }
 
-    public void releaseFor(Player player){
+    public void releaseFor(Player player) {
         release.accept(player);
     }
 }

@@ -17,7 +17,8 @@ public class ClientPacketListener implements Consumer<Object> {
     private final Map<Class<?>, Consumer<Object>> handlers;
 
     private final Handler handler;
-    public ClientPacketListener(Handler handler){
+
+    public ClientPacketListener(Handler handler) {
         handlers = new HashMap<>();
         this.handler = handler;
 
@@ -31,25 +32,25 @@ public class ClientPacketListener implements Consumer<Object> {
         handlers.get(o.getClass()).accept(o);
     }
 
-    public void handlePlayerConnectPacket(Object o){
+    public void handlePlayerConnectPacket(Object o) {
         PlayerConnectPacket packet = (PlayerConnectPacket) o;
         Player player = new Player(packet.name, packet.x, packet.y, packet.velX, packet.velY);
         handler.addObject(player);
     }
 
-    public void handleClientConfirmedPacket(Object o){
+    public void handleClientConfirmedPacket(Object o) {
         ClientConfirmedPacket packet = (ClientConfirmedPacket) o;
         Game.player = new Player(packet.name, packet.x, packet.y, packet.velX, packet.velY);
         handler.addObject(Game.player);
     }
 
-    public void handlerPlayerInfoPacket(Object o){
+    public void handlerPlayerInfoPacket(Object o) {
         PlayerInfoPacket packet = (PlayerInfoPacket) o;
 
         for (GameObject object : handler.getObjects()) {
-            if(object instanceof Player){
+            if (object instanceof Player) {
                 Player player = (Player) object;
-                if(player.getName().equals(packet.name)){
+                if (player.getName().equals(packet.name)) {
                     player.setX(packet.x);
                     player.setY(packet.y);
                     player.setVelX(packet.velX);

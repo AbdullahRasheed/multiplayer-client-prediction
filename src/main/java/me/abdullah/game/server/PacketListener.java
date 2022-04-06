@@ -8,7 +8,8 @@ import me.abdullah.game.server.packets.PlayerConnectPacket;
 import me.abdullah.game.server.packets.PlayerInfoPacket;
 import me.abdullah.game.server.packets.PlayerInputPacket;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class PacketListener {
@@ -18,7 +19,7 @@ public class PacketListener {
 
     private final Map<Class<?>, BiConsumer<Connection, Object>> handlers;
 
-    public PacketListener(Handler handler){
+    public PacketListener(Handler handler) {
         this.handler = handler;
         this.actionHandler = new ServerActionHandler();
 
@@ -32,7 +33,7 @@ public class PacketListener {
         handlers.get(o.getClass()).accept(connection, o);
     }
 
-    public void process(){
+    public void process() {
         for (Connection c : Connections.getConnections().keySet()) {
             for (Connection c1 : Connections.getConnections().keySet()) {
                 Player player = Connections.getPlayer(c1);
@@ -41,7 +42,7 @@ public class PacketListener {
         }
     }
 
-    public void handlePlayerConnectPacket(Connection connection, Object o){
+    public void handlePlayerConnectPacket(Connection connection, Object o) {
         PlayerConnectPacket packet = (PlayerConnectPacket) o;
 
         for (Connection c : Connections.getConnections().keySet()) {
@@ -55,14 +56,14 @@ public class PacketListener {
         connection.sendPacket(new ClientConfirmedPacket(packet.name, packet.x, packet.y, packet.velX, packet.velY));
     }
 
-    public void handlePlayerInputPacket(Connection connection, Object o){
+    public void handlePlayerInputPacket(Connection connection, Object o) {
         PlayerInputPacket packet = (PlayerInputPacket) o;
 
         Player player = Connections.getPlayer(connection);
 
-        if(packet.pressed){
+        if (packet.pressed) {
             actionHandler.keyPressed(packet.action, player);
-        }else{
+        } else {
             actionHandler.keyReleased(packet.action, player);
         }
     }

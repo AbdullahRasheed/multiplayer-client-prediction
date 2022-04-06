@@ -6,19 +6,17 @@ import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class Keybinds {
 
     private final Map<Integer, Action> keybinds;
 
-    private Keybinds(Map<Integer, Action> keybinds){
+    private Keybinds(Map<Integer, Action> keybinds) {
         this.keybinds = keybinds;
     }
 
-    public static Keybinds load(Class<? extends Action> type, String map){
+    public static Keybinds load(Class<? extends Action> type, String map) {
 
         Map<Integer, Action> keybinds = new HashMap<>();
 
@@ -46,15 +44,15 @@ public class Keybinds {
         return new Keybinds(keybinds);
     }
 
-    public Action get(int keyCode){
+    public Action get(int keyCode) {
         return keybinds.get(keyCode);
     }
 
-    public void act(int keyCode){
+    public void act(int keyCode) {
         get(keyCode).act();
     }
 
-    public void release(int keyCode){
+    public void release(int keyCode) {
         get(keyCode).release();
     }
 }
