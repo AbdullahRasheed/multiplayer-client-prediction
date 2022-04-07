@@ -51,6 +51,5 @@ public class GameThread implements Runnable {
 
     private void tick(){
         handler.tick();
-        handler.clearActionQueue();
     }
 }

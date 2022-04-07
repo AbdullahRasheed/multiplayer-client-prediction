@@ -9,6 +9,7 @@ import me.abdullah.game.input.Keybinds;
 import me.abdullah.game.input.KeyboardListener;
 import me.abdullah.game.input.actions.PlayerAction;
 import me.abdullah.game.objects.entity.Player;
+import me.abdullah.game.server.ServerInfo;
 import me.abdullah.game.server.packets.PlayerConnectPacket;
 
 import java.awt.*;
@@ -42,7 +43,7 @@ public class Game extends Canvas implements Runnable {
         GameFiles.load(new File(loader.getResource("player_keybinds.txt").getPath()), "player_keybinds");
 
         try {
-            client = new GameClient("70.179.132.50", 6969);
+            client = new GameClient(ServerInfo.INET_ADDRESS, ServerInfo.PORT);
             client.setPacketListener(new ClientPacketListener(handler));
         } catch (IOException e) {
             e.printStackTrace();
@@ -128,7 +129,6 @@ public class Game extends Canvas implements Runnable {
      */
     private void tick(){
         handler.tick();
-        handler.clearActionQueue();
     }
 
     public static void main(String[] args){

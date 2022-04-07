@@ -38,6 +38,8 @@ public class Handler {
         for (GameObject object : objects) {
             object.tick();
         }
+
+        clearActionQueue();
     }
 
     public void addObject(GameObject object){
@@ -52,13 +54,11 @@ public class Handler {
         return objects;
     }
 
-    public void clearActionQueue(){
-        synchronized (objects) { // FIXME I don't really like this
-            for (Pair<ActionType, GameObject> pair : actionQueue) {
-                pair.getKey().handle.accept(objects, pair.getValue());
-            }
-
-            actionQueue.clear();
+    private void clearActionQueue() {
+        for (Pair<ActionType, GameObject> pair : actionQueue) {
+            pair.getKey().handle.accept(objects, pair.getValue());
         }
+
+        actionQueue.clear();
     }
 }

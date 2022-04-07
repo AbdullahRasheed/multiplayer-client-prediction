@@ -8,7 +8,7 @@ public class ServerMain {
 
     public static void main(String[] args) throws IOException {
         Handler handler = new Handler();
-        Server server = new Server(6969, handler);
+        Server server = new Server(ServerInfo.PORT, handler);
         server.begin();
 
         new GameThread(handler).start();
