@@ -41,6 +41,9 @@ public class Game extends Canvas implements Runnable {
 
         ClassLoader loader = getClass().getClassLoader();
         GameFiles.load(new File(loader.getResource("player_keybinds.txt").getPath()), "player_keybinds");
+        GameFiles.load(new File(loader.getResource("server_info.txt").getPath()), "server_info");
+
+        GameFiles.processLines("server_info", s -> ServerInfo.INET_ADDRESS = s);
 
         try {
             client = new GameClient(ServerInfo.INET_ADDRESS, ServerInfo.PORT);
