@@ -35,6 +35,15 @@ public class Server {
                 }
             }
         }).start();
+        new Thread(() -> {
+            long start = System.currentTimeMillis();
+            while(running){
+                if(System.currentTimeMillis() - start >= 10){
+                    packetConsumer.process();
+                    start += 30;
+                }
+            }
+        }).start();
     }
 
     public synchronized void close(){

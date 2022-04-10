@@ -23,7 +23,7 @@ public class ClientPacketListener implements Consumer<Object> {
 
         handlers.put(PlayerConnectPacket.class, this::handlePlayerConnectPacket);
         handlers.put(ClientConfirmedPacket.class, this::handleClientConfirmedPacket);
-        handlers.put(PlayerInfoPacket.class, this::handlerPlayerInfoPacket);
+        handlers.put(PlayerInfoPacket.class, this::handlePlayerInfoPacket);
     }
 
     @Override
@@ -43,19 +43,28 @@ public class ClientPacketListener implements Consumer<Object> {
         handler.addObject(Game.player);
     }
 
-    public void handlerPlayerInfoPacket(Object o){
+    public void handlePlayerInfoPacket(Object o){
         PlayerInfoPacket packet = (PlayerInfoPacket) o;
 
         for (GameObject object : handler.getObjects()) {
             if(object instanceof Player){
                 Player player = (Player) object;
                 if(player.getName().equals(packet.name)){
-                    player.setX(packet.x);
-                    player.setY(packet.y);
-                    player.setVelX(packet.velX);
-                    player.setVelY(packet.velY);
+                    int distX = player.getX() - packet.x;
+                    int distY = player.getY() - packet.y;
+
+                    // TODO slowly reconcile
+
+                    if(distX*distX + distY*distY > Game.UNIT*5){
+                        player.setX(packet.x);
+                        player.setY(packet.y);
+                    }
+
+                    return;
                 }
             }
         }
+
+        handler.addObject(new Player(packet.name, packet.x, packet.y, packet.velX, packet.velY));
     }
 }

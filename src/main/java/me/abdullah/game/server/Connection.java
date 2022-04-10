@@ -28,17 +28,11 @@ public class Connection {
 
         running = true;
         new Thread(() -> {
-            long start = System.currentTimeMillis();
             while (running) {
                 try {
                     packetConsumer.accept(this, in.readObject());
                 } catch (IOException | ClassNotFoundException e) {
                     close();
-                }
-
-                if(System.currentTimeMillis() - start >= 30){
-                    packetConsumer.process();
-                    start += 30;
                 }
             }
         }).start();
