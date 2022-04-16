@@ -55,7 +55,7 @@ public class ClientPacketListener implements Consumer<Object> {
 
                     // TODO slowly reconcile
 
-                    if(distX*distX + distY*distY > Game.UNIT*5){
+                    if(distX*distX + distY*distY > Game.UNIT*25){
                         player.setX(packet.x);
                         player.setY(packet.y);
                     }
@@ -64,7 +64,5 @@ public class ClientPacketListener implements Consumer<Object> {
                 }
             }
         }
-
-        handler.addObject(new Player(packet.name, packet.x, packet.y, packet.velX, packet.velY));
     }
 }
